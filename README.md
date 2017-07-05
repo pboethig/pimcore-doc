@@ -1,8 +1,8 @@
-## Emotico Frontend
-- this laravel / voyager project is the frontend for the emotico media service
+## pimcore-dock
+- this is a docker / docker-compose environment to run pimcore5 prealpha
 
 ## prerequisites
-- linux
+- linux 
 - installed docker
 - installed docker-compose version 2 (>1.6)
 - composer
@@ -13,29 +13,27 @@
 ```sh
 docker-compose-up -d
 ```
-- change to application
+- change to 
 ```sh
 composer install
 ```
 
-## Install voyager and emotico basedate
+## create database
+- login to mysql container and create database 
 ```sh
-php artisan voyager:install
-php artisan db:seed --class=EmoticoDatabaseSeeder
+docker exec-it pimcore-doc-mysql /bin/bash
+mysql -u root -p
+CREATE DATABASE pimcore charset=utf8mb4;
 ```
 
-- surf to http://localhost:8080
 
-## Run tests
-- there are some basic unit and integrationtests 
-- change to laradock/application
 
-## bind to emotico backend
-- install emotico project
-- configure mediaconverter section in .env file
+- surf to http://localhost:8181/install.php
+- type in your databaseconfig:
+user: root
+pass: root
+database: pimcore
 
-```sh
-./vendor/bin/phpunit tests
-```
-# pimcore-doc
-# pimcore-doc
+Thats it.
+
+Please note, to change your databaseconnection to your credentials.
